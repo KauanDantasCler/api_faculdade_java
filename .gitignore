@@ -33,7 +33,7 @@ build/
 .vscode/
 
 ### Configurações locais com senhas/credenciais ###
-src/main/resources/application-dev.properties
+src/main/resources/application.properties
 *.log
 
 ### Sistema Operacional ###
