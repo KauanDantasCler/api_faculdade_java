@@ -1,0 +1,17 @@
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# Java / Maven (Backend)
+eventos-api/target/
+*.class
+
+# Node / Angular (Frontend)
+eventos-web/node_modules/
+eventos-web/dist/
+eventos-web/.angular/
+
+# Sistema Operacional
+Thumbs.db
+.DS_Store
