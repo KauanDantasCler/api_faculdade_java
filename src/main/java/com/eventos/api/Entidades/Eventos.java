@@ -1,52 +1,44 @@
 package com.eventos.api.Entidades;
 
-
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "tb_eventos")
+@Document(collection = "eventos")
 public class Eventos {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long evento_id;
+    private String id; // Alterado de Long para String para aceitar o ObjectId do Mongo
 
-    @Column(nullable = false)
     private String nome;
-
-    @Column(nullable = false)
     private LocalDate date;
-
-    @Column(nullable = false)
     private String local;
-
-    @Column(nullable = false)
     private Integer capacidade;
 
     public Eventos() {
-
     }
 
-    public Eventos(Long evento_id, String nome, LocalDate date, String local, Integer capacidade) {
-        this.evento_id = evento_id;
+    public Eventos(String id, String nome, LocalDate date, String local, Integer capacidade) {
+        this.id = id;
         this.nome = nome;
         this.date = date;
         this.local = local;
         this.capacidade = capacidade;
     }
 
-    public Long getId() {
-        return evento_id;
+    public String getId() {
+        return id;
     }
-    public void setId(Long evento_id) {
-        this.evento_id = evento_id;
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -62,6 +54,7 @@ public class Eventos {
     public String getLocal() {
         return local;
     }
+
     public void setLocal(String local) {
         this.local = local;
     }

@@ -1,6 +1,5 @@
 package com.eventos.api.Services;
 
-
 import com.eventos.api.Entidades.Eventos;
 import com.eventos.api.Entidades.Ingresso;
 import com.eventos.api.Repositorys.EventoRepository;
@@ -17,16 +16,16 @@ public class IngressoService {
     private final IngressoRepository ingressoRepository;
     private final EventoRepository eventoRepository;
 
-    public IngressoService(IngressoRepository ingressoRepository, EventoRepository eventoRepository ) {
+    public IngressoService(IngressoRepository ingressoRepository, EventoRepository eventoRepository) {
         this.ingressoRepository = ingressoRepository;
         this.eventoRepository = eventoRepository;
     }
 
-    public Ingresso emitirIngresso(Long evento_id, Ingresso ingresso) {
+    public Ingresso emitirIngresso(String evento_id, Ingresso ingresso) {
         Eventos eventos = eventoRepository.findById(evento_id)
-                .orElseThrow(()-> new ResourceNotFoundException("Evento não encontrado com o ID: " + evento_id));
+                .orElseThrow(() -> new ResourceNotFoundException("Evento não encontrado com o ID: " + evento_id));
 
-        ingresso.setEventos(eventos);
+        ingresso.setEventoId(eventos.getId());
 
         String codigoAleatorio = "ING-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         ingresso.setCodigoIngresso(codigoAleatorio);
@@ -38,9 +37,8 @@ public class IngressoService {
         return ingressoRepository.findAll();
     }
 
-    public Ingresso buscarPorId(Long ingresso_id) {
+    public Ingresso buscarPorId(String ingresso_id) {
         return ingressoRepository.findById(ingresso_id)
                 .orElseThrow(() -> new ResourceNotFoundException("Ingresso não encontrado com ID: " + ingresso_id));
     }
-
 }

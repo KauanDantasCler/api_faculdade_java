@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 @Service
 public class EventoService {
 
@@ -24,7 +23,9 @@ public class EventoService {
     public List<Eventos> listarTodos() {
         return eventoRepository.findAll();
     }
-    public Eventos buscarPorId(Long id) {
-        return eventoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Evento não encontrado"));
+
+    public Eventos buscarPorId(String id) {
+        return eventoRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Evento não encontrado com ID: " + id));
     }
 }
