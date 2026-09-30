@@ -1,0 +1,69 @@
+<div class="lista-wrapper">
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Ingressos Emitidos</h1>
+      <p class="page-subtitle">Consulte e gerencie todos os ingressos emitidos pelos participantes.</p>
+    </div>
+    <a routerLink="/eventos" class="btn btn-primary">+ Novo Ingresso</a>
+  </div>
+
+  @if (mensagemSucesso()) {
+    <div class="alert alert-success">
+      <span>{{ mensagemSucesso() }}</span>
+    </div>
+  }
+
+  @if (erro()) {
+    <div class="alert alert-error">
+      <span>{{ erro() }}</span>
+      <button (click)="carregarIngressos()" class="btn-retry">Tentar novamente</button>
+    </div>
+  }
+
+  @if (carregando()) {
+    <div class="loading-state">
+      <p>Carregando ingressos...</p>
+    </div>
+  }
+
+  @if (!carregando() && !erro() && ingressos().length === 0) {
+    <div class="empty-state">
+      <h3>Nenhum ingresso emitido</h3>
+      <p>Acesse a lista de eventos para emitir ingressos para os participantes.</p>
+      <a routerLink="/eventos" class="btn btn-primary">Ver Eventos Disponíveis</a>
+    </div>
+  }
+
+  @if (!carregando() && ingressos().length > 0) {
+    <div class="table-card">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Participante</th>
+            <th>E-mail</th>
+            <th>Preço</th>
+            <th>ID do Evento</th>
+            <th class="text-right">Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (ing of ingressos(); track ing.id) {
+            <tr>
+              <td><span class="code-badge">{{ ing.codigoIngresso || 'ING-N/A' }}</span></td>
+              <td><span class="participant-name">{{ ing.nomeParticipante }}</span></td>
+              <td><span class="text-muted">{{ ing.emailParticipante }}</span></td>
+              <td><strong>R$ {{ ing.preco | number:'1.2-2' }}</strong></td>
+              <td><code class="event-id-tag">{{ ing.eventoId }}</code></td>
+              <td class="text-right">
+                <button class="btn btn-delete-sm" (click)="deletarIngresso(ing.id!, ing.codigoIngresso || '')">
+                  Cancelar Ingresso
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

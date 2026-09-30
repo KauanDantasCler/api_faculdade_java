@@ -1,0 +1,34 @@
+.lista-wrapper { width: 100%; }
+
+.page-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px; }
+.page-title { font-family: var(--font-title); font-size: 2.2rem; font-weight: 700; color: #0f172a; letter-spacing: -0.5px; margin-bottom: 4px; }
+.page-subtitle { font-size: 0.92rem; color: #64748b; }
+
+.alert { padding: 14px 18px; border-radius: 8px; margin-bottom: 24px; font-size: 0.9rem; display: flex; align-items: center; justify-content: space-between; }
+.alert-success { background-color: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; }
+.alert-error { background-color: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
+
+.loading-state { text-align: center; padding: 60px 0; color: #64748b; }
+.empty-state { text-align: center; padding: 64px 24px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; max-width: 480px; margin: 0 auto; }
+.empty-state h3 { font-size: 1.15rem; color: #0f172a; margin-bottom: 6px; }
+.empty-state p { font-size: 0.88rem; color: #64748b; margin-bottom: 20px; }
+
+.table-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02); overflow: hidden; }
+.data-table { width: 100%; border-collapse: collapse; text-align: left; }
+.data-table th, .data-table td { padding: 16px 20px; border-bottom: 1px solid #f1f5f9; font-size: 0.88rem; }
+.data-table th { background: #0a0d14; color: #ffffff; font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.5px; }
+.data-table tr:hover { background-color: #f8fafc; }
+
+.code-badge { background-color: #f43f5e; color: #ffffff; padding: 4px 10px; border-radius: 6px; font-weight: 700; font-family: monospace; font-size: 0.82rem; }
+.participant-name { font-weight: 600; color: #0f172a; }
+.text-muted { color: #64748b; }
+.event-id-tag { background: #f1f5f9; color: #475569; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; }
+
+.text-right { text-align: right; }
+
+.btn { padding: 9px 18px; border-radius: 8px; font-size: 0.88rem; font-weight: 600; text-decoration: none; cursor: pointer; border: none; }
+.btn-primary { background-color: #f43f5e; color: #ffffff; }
+.btn-primary:hover { background-color: #e11d48; }
+
+.btn-delete-sm { background-color: #ffffff; border: 1px solid #fecaca; color: #e11d48; padding: 6px 14px; border-radius: 6px; font-weight: 600; font-size: 0.82rem; cursor: pointer; transition: all 0.15s ease; }
+.btn-delete-sm:hover { background-color: #fef2f2; border-color: #f87171; }

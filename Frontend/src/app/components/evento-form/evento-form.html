@@ -1,0 +1,76 @@
+<div class="form-wrapper">
+  <div class="page-header">
+    <a routerLink="/eventos" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Voltar
+    </a>
+    <h1 class="page-title">{{ modoEdicao() ? 'Editar Evento' : 'Novo Evento' }}</h1>
+    <p class="page-subtitle">
+      {{ modoEdicao() ? 'Atualize as informações do evento cadastrado.' : 'Preencha os detalhes abaixo para cadastrar um novo evento na plataforma.' }}
+    </p>
+  </div>
+
+  @if (carregando()) {
+    <div class="loading-box">
+      <p>Carregando informações do evento...</p>
+    </div>
+  }
+
+  @if (erro()) {
+    <div class="alert alert-error">
+      <span>{{ erro() }}</span>
+    </div>
+  }
+
+  @if (!carregando()) {
+    <form [formGroup]="form" (ngSubmit)="salvar()" class="form-card">
+      
+      <div class="card-section-title">
+        <span class="info-icon-badge">i</span>
+        <h2>Informações Gerais</h2>
+      </div>
+
+      <div class="form-body">
+        <div class="form-group">
+          <label for="nome">Nome do Evento <span class="required">*</span></label>
+          <input id="nome" type="text" formControlName="nome" placeholder="Ex: Workshop Angular" />
+          @if (f['nome'].invalid && f['nome'].touched) {
+            <span class="error-msg">Nome é obrigatório (mínimo 3 caracteres).</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="date">Data <span class="required">*</span></label>
+          <input id="date" type="date" formControlName="date" />
+          @if (f['date'].invalid && f['date'].touched) {
+            <span class="error-msg">Data é obrigatória.</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="local">Local <span class="required">*</span></label>
+          <input id="local" type="text" formControlName="local" placeholder="Ex: Auditório Principal" />
+          @if (f['local'].invalid && f['local'].touched) {
+            <span class="error-msg">Local é obrigatório.</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="descricao">Descrição</label>
+          <textarea id="descricao" formControlName="descricao" rows="5" placeholder="Descreva o evento..."></textarea>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <a routerLink="/eventos" class="btn btn-secondary">Cancelar</a>
+        <button type="submit" class="btn btn-primary" [disabled]="salvando()">
+          {{ salvando() ? 'Salvando...' : (modoEdicao() ? 'Salvar Alterações' : 'Criar Evento') }}
+        </button>
+      </div>
+
+    </form>
+  }
+</div>
